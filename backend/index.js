@@ -12,7 +12,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'https://al-hadith-backend.vercel.app'],
+    origin: ['http://localhost:5173', 'https://al-hadith-frontend.vercel.app'],
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
   }),
