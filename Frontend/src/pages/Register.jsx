@@ -146,7 +146,7 @@ const CreateUser = () => {
           {/* Description */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              About (Optional)
+              About 
             </label>
             <textarea
               name="description"
