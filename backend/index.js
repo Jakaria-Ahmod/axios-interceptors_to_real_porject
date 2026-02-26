@@ -20,7 +20,13 @@ app.use(
 
 app.use('/api/auth', authRoutes);
 
-
+app.get('/', (req, res) => {
+  try {
+    return res.status(200).json({ message: 'Server Is Runinig Sucessfully' });
+  } catch (error) {
+    return res.status(200).json({ message: error.message });
+  }
+});
 
 //
 app.listen(PORT, () => {
