@@ -2,13 +2,13 @@ import axios from 'axios';
 
 // main api instance
 const api = axios.create({
-  baseURL: 'http://127.0.0.1:8080/api/v1',
+  baseURL: `${import.meta.env.VITE_APP_API_URL}`,
   withCredentials: true, // cookie পাঠানোর জন্য
 });
 
 // refresh api instance
 const refreshApi = axios.create({
-  baseURL: 'http://127.0.0.1:8080/api/v1',
+  baseURL: `${import.meta.env.VITE_APP_API_URL}`,
   withCredentials: true,
 });
 
@@ -23,7 +23,7 @@ api.interceptors.request.use(
     }
     return config;
   },
-  error => Promise.reject(error)
+  error => Promise.reject(error),
 );
 
 // Response interceptor → 401 আসলে auto refresh
@@ -37,7 +37,7 @@ api.interceptors.response.use(
 
       try {
         // refresh API call
-        const res = await refreshApi.post('/refresh');
+        const res = await refreshApi.post('/auth/refresh');
         const newAccessToken = res.data.accessToken;
 
         if (newAccessToken) {
@@ -56,7 +56,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;

@@ -4,7 +4,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = process.env.PORT || 3030;
-const routes = require('./routes');
+const authRoutes = require('./routes/authRoutes');
 const DBCONNECT = require('./config');
 
 ///
@@ -15,15 +15,12 @@ app.use(
     origin: 'http://localhost:5173',
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
-  })
+  }),
 );
 
-app.use(routes);
+app.use('/api/auth', authRoutes);
 
-//
-app.use((req, res) => {
-  res.status(404).json({ message: 'invalid routes' });
-});
+
 
 //
 app.listen(PORT, () => {

@@ -2,13 +2,13 @@ const jwt = require('jsonwebtoken');
 
 // Access Token: 5 মিনিট
 const accessToken = payload => {
-  return jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '2s' });
+  return jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '7d' });
 };
 
 // Refresh Token: 7 দিন
 const refreshToken = payload => {
   return jwt.sign(payload, process.env.JWT_REFRESH_SECRET_KEY, {
-    expiresIn: '7d',
+    expiresIn: '15d',
   });
 };
 

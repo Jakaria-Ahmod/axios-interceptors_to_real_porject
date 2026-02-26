@@ -1,14 +1,22 @@
-// import { Outlet } from 'react-router'; //
 import { Outlet } from 'react-router';
-import Header from '../commonLayout';
+import Header from '../commonLayout/index';
+import Footer from '../commonLayout/Footer';
 
-const Rootcomponents = () => {
+const RootLayout = () => {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
+      {/* Header - fixed at top */}
       <Header />
-      <Outlet />
+
+      {/* Main content area - grows to fill space, handles padding for fixed header */}
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+
+      {/* Footer - stays at bottom */}
+      <Footer />
     </div>
   );
 };
 
-export default Rootcomponents;
+export default RootLayout;
